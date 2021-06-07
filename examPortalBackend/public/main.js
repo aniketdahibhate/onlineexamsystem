@@ -304,7 +304,7 @@ class TeacherService {
         this.currentUser = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     signup(teacher) {
-        return this.http.post('http://localhost:3000/teacher/signup', { 'username': teacher.email, 'password': teacher.password })
+        return this.http.post('teacher/signup', { 'username': teacher.email, 'password': teacher.password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((res) => {
             if (res.success == true) {
                 alert(res.status);
@@ -316,7 +316,7 @@ class TeacherService {
         }));
     }
     login(teacher) {
-        return this.http.post('http://localhost:3000/teacher/login', { 'username': teacher.email, 'password': teacher.password })
+        return this.http.post('teacher/login', { 'username': teacher.email, 'password': teacher.password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((res) => {
             console.log(res.id);
             if (res.success == true) {
@@ -362,7 +362,7 @@ class AddQuestionService {
         this.http = http;
     }
     add(question) {
-        return this.http.post('http://localhost:3000/questions/add', { 'question': question.question_text, 'option1': question.option1, 'option2': question.option2,
+        return this.http.post('questions/add', { 'question': question.question_text, 'option1': question.option1, 'option2': question.option2,
             'option3': question.option3, 'option4': question.option4, 'correct_answer': question.correct_option, })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])((res) => {
             console.log(res);
@@ -371,7 +371,7 @@ class AddQuestionService {
         }));
     }
     getQuestions() {
-        return this.http.get('http://localhost:3000/questions/get')
+        return this.http.get('questions/get')
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(res => {
             return { 'questions': res };
             //console.log(res);
@@ -411,7 +411,7 @@ class StudentService {
         this.currentUser = new rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]();
     }
     signup(student) {
-        return this.http.post('http://localhost:3000/student/signup', { 'username': student.email, 'password': student.password })
+        return this.http.post('student/signup', { 'username': student.email, 'password': student.password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((res) => {
             console.log(res);
             alert(res.status);
@@ -419,7 +419,7 @@ class StudentService {
         }));
     }
     login(student) {
-        return this.http.post('http://localhost:3000/student/login', { 'username': student.email, 'password': student.password })
+        return this.http.post('student/login', { 'username': student.email, 'password': student.password })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((res) => {
             console.log(res);
             this.currentUser.next(res.user);
@@ -433,7 +433,7 @@ class StudentService {
         this.router.navigateByUrl('/home');
     }
     addScore(score) {
-        return this.http.put('http://localhost:3000/student/' + this.studId, { 'marks': score })
+        return this.http.put('student/' + this.studId, { 'marks': score })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((res) => {
             console.log(res.marks);
             return res.marks;
